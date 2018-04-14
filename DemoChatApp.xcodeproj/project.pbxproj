@@ -12,9 +12,14 @@
 		8A3C19BC2081D50500BBB470 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A3C19BA2081D50500BBB470 /* Main.storyboard */; };
 		8A3C19BE2081D52A00BBB470 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A3C19BD2081D52A00BBB470 /* Assets.xcassets */; };
 		8A3C19C12081D52A00BBB470 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A3C19BF2081D52A00BBB470 /* LaunchScreen.storyboard */; };
+		8A3C19CA2081E55C00BBB470 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3C19C92081E55C00BBB470 /* LoginController.swift */; };
+		8A3C19CC2082081000BBB470 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8A3C19CB2082081000BBB470 /* GoogleService-Info.plist */; };
+		B003CABF167D6F3B5BAE4271 /* Pods_DemoChatApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE9A72907ECCCF4EF09C43FA /* Pods_DemoChatApp.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		11E40691AFB7C2133C301CA7 /* Pods-DemoChatApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DemoChatApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DemoChatApp/Pods-DemoChatApp.debug.xcconfig"; sourceTree = "<group>"; };
+		574B215EBF2E53A086F67540 /* Pods-DemoChatApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DemoChatApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-DemoChatApp/Pods-DemoChatApp.release.xcconfig"; sourceTree = "<group>"; };
 		8A3C19B32081D50400BBB470 /* DemoChatApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DemoChatApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A3C19B62081D50500BBB470 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8A3C19B82081D50500BBB470 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -22,6 +27,9 @@
 		8A3C19BD2081D52A00BBB470 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8A3C19C02081D52A00BBB470 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8A3C19C22081D52A00BBB470 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		8A3C19C92081E55C00BBB470 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
+		8A3C19CB2082081000BBB470 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		EE9A72907ECCCF4EF09C43FA /* Pods_DemoChatApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DemoChatApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -29,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				B003CABF167D6F3B5BAE4271 /* Pods_DemoChatApp.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -40,6 +49,8 @@
 			children = (
 				8A3C19B52081D50400BBB470 /* DemoChatApp */,
 				8A3C19B42081D50400BBB470 /* Products */,
+				C245FDF39E815CAF1C7E6E6B /* Pods */,
+				BADA384AA90DAE18EEE6E852 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -54,14 +65,41 @@
 		8A3C19B52081D50400BBB470 /* DemoChatApp */ = {
 			isa = PBXGroup;
 			children = (
+				8A3C19C82081E51200BBB470 /* View Controllers */,
 				8A3C19B62081D50500BBB470 /* AppDelegate.swift */,
-				8A3C19B82081D50500BBB470 /* ViewController.swift */,
 				8A3C19BA2081D50500BBB470 /* Main.storyboard */,
 				8A3C19BD2081D52A00BBB470 /* Assets.xcassets */,
 				8A3C19BF2081D52A00BBB470 /* LaunchScreen.storyboard */,
 				8A3C19C22081D52A00BBB470 /* Info.plist */,
+				8A3C19CB2082081000BBB470 /* GoogleService-Info.plist */,
 			);
 			path = DemoChatApp;
+			sourceTree = "<group>";
+		};
+		8A3C19C82081E51200BBB470 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				8A3C19B82081D50500BBB470 /* ViewController.swift */,
+				8A3C19C92081E55C00BBB470 /* LoginController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		BADA384AA90DAE18EEE6E852 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EE9A72907ECCCF4EF09C43FA /* Pods_DemoChatApp.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		C245FDF39E815CAF1C7E6E6B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				11E40691AFB7C2133C301CA7 /* Pods-DemoChatApp.debug.xcconfig */,
+				574B215EBF2E53A086F67540 /* Pods-DemoChatApp.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -71,9 +109,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8A3C19C52081D52A00BBB470 /* Build configuration list for PBXNativeTarget "DemoChatApp" */;
 			buildPhases = (
+				40F6E2C01C3D0ED9A5F04014 /* [CP] Check Pods Manifest.lock */,
 				8A3C19AF2081D50400BBB470 /* Sources */,
 				8A3C19B02081D50400BBB470 /* Frameworks */,
 				8A3C19B12081D50400BBB470 /* Resources */,
+				4C0001613438EF16A5EF97B1 /* [CP] Embed Pods Frameworks */,
+				1443D5BB9A55250C1358EBE9 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -125,10 +166,71 @@
 				8A3C19C12081D52A00BBB470 /* LaunchScreen.storyboard in Resources */,
 				8A3C19BE2081D52A00BBB470 /* Assets.xcassets in Resources */,
 				8A3C19BC2081D50500BBB470 /* Main.storyboard in Resources */,
+				8A3C19CC2082081000BBB470 /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1443D5BB9A55250C1358EBE9 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DemoChatApp/Pods-DemoChatApp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		40F6E2C01C3D0ED9A5F04014 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DemoChatApp-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4C0001613438EF16A5EF97B1 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-DemoChatApp/Pods-DemoChatApp-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DemoChatApp/Pods-DemoChatApp-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8A3C19AF2081D50400BBB470 /* Sources */ = {
@@ -136,6 +238,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8A3C19B92081D50500BBB470 /* ViewController.swift in Sources */,
+				8A3C19CA2081E55C00BBB470 /* LoginController.swift in Sources */,
 				8A3C19B72081D50500BBB470 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -278,14 +381,13 @@
 		};
 		8A3C19C62081D52A00BBB470 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 11E40691AFB7C2133C301CA7 /* Pods-DemoChatApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = DemoChatApp/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = kayosys.DemoChatApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -295,14 +397,13 @@
 		};
 		8A3C19C72081D52A00BBB470 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 574B215EBF2E53A086F67540 /* Pods-DemoChatApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = DemoChatApp/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-				);
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = kayosys.DemoChatApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
