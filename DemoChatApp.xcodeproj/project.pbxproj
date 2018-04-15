@@ -8,12 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		8A3C19B72081D50500BBB470 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3C19B62081D50500BBB470 /* AppDelegate.swift */; };
-		8A3C19B92081D50500BBB470 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3C19B82081D50500BBB470 /* ViewController.swift */; };
+		8A3C19B92081D50500BBB470 /* MessagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3C19B82081D50500BBB470 /* MessagesController.swift */; };
 		8A3C19BC2081D50500BBB470 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A3C19BA2081D50500BBB470 /* Main.storyboard */; };
 		8A3C19BE2081D52A00BBB470 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8A3C19BD2081D52A00BBB470 /* Assets.xcassets */; };
 		8A3C19C12081D52A00BBB470 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8A3C19BF2081D52A00BBB470 /* LaunchScreen.storyboard */; };
 		8A3C19CA2081E55C00BBB470 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8A3C19C92081E55C00BBB470 /* LoginController.swift */; };
 		8A3C19CC2082081000BBB470 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 8A3C19CB2082081000BBB470 /* GoogleService-Info.plist */; };
+		9443CEBA20839C9F00940A9B /* NewMessagesController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9443CEB920839C9F00940A9B /* NewMessagesController.swift */; };
 		B003CABF167D6F3B5BAE4271 /* Pods_DemoChatApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE9A72907ECCCF4EF09C43FA /* Pods_DemoChatApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -22,13 +23,14 @@
 		574B215EBF2E53A086F67540 /* Pods-DemoChatApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DemoChatApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-DemoChatApp/Pods-DemoChatApp.release.xcconfig"; sourceTree = "<group>"; };
 		8A3C19B32081D50400BBB470 /* DemoChatApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DemoChatApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8A3C19B62081D50500BBB470 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		8A3C19B82081D50500BBB470 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		8A3C19B82081D50500BBB470 /* MessagesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessagesController.swift; sourceTree = "<group>"; };
 		8A3C19BB2081D50500BBB470 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		8A3C19BD2081D52A00BBB470 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		8A3C19C02081D52A00BBB470 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		8A3C19C22081D52A00BBB470 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		8A3C19C92081E55C00BBB470 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		8A3C19CB2082081000BBB470 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		9443CEB920839C9F00940A9B /* NewMessagesController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewMessagesController.swift; sourceTree = "<group>"; };
 		EE9A72907ECCCF4EF09C43FA /* Pods_DemoChatApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DemoChatApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -79,8 +81,9 @@
 		8A3C19C82081E51200BBB470 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				8A3C19B82081D50500BBB470 /* ViewController.swift */,
+				8A3C19B82081D50500BBB470 /* MessagesController.swift */,
 				8A3C19C92081E55C00BBB470 /* LoginController.swift */,
+				9443CEB920839C9F00940A9B /* NewMessagesController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -237,7 +240,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8A3C19B92081D50500BBB470 /* ViewController.swift in Sources */,
+				9443CEBA20839C9F00940A9B /* NewMessagesController.swift in Sources */,
+				8A3C19B92081D50500BBB470 /* MessagesController.swift in Sources */,
 				8A3C19CA2081E55C00BBB470 /* LoginController.swift in Sources */,
 				8A3C19B72081D50500BBB470 /* AppDelegate.swift in Sources */,
 			);
@@ -387,7 +391,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = DemoChatApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = kayosys.DemoChatApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -403,7 +410,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				INFOPLIST_FILE = DemoChatApp/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = kayosys.DemoChatApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;

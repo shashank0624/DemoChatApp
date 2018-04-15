@@ -10,55 +10,7 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "DemoChatApp/View Controllers/LoginController.swift"
-            timestampString = "545479856.47445"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
-            landmarkName = "handleUserLogin()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "DemoChatApp.LoginController.handleUserLogin() -&gt; ()"
-                  moduleName = "DemoChatApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Volumes/Storage/Swift%20Learning/DemoChatApp/DemoChatApp/View%20Controllers/LoginController.swift"
-                  timestampString = "545479520.372862"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "90"
-                  endingLineNumber = "90"
-                  offsetFromSymbolStart = "1198">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 (Swift.Optional&lt;__ObjC.User&gt;, Swift.Optional&lt;Swift.Error&gt;) -&gt; () in DemoChatApp.LoginController.handleUserLogin() -&gt; ()"
-                  moduleName = "DemoChatApp"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Volumes/Storage/Swift%20Learning/DemoChatApp/DemoChatApp/View%20Controllers/LoginController.swift"
-                  timestampString = "545479520.376057"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "92"
-                  endingLineNumber = "92"
-                  offsetFromSymbolStart = "25">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "DemoChatApp/View Controllers/LoginController.swift"
-            timestampString = "545479856.475252"
+            timestampString = "545501319.933533"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "50"

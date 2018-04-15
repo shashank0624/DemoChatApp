@@ -10,13 +10,26 @@ import UIKit
 import Firebase
 import FirebaseAuth
 
-class ViewController: UIViewController {
+class MessagesController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        //User not logged in
+       checkIfUserIsLoggedIn()
+    
+    }
+    
+    func checkIfUserIsLoggedIn(){
         if Auth.auth().currentUser?.uid == nil{
             perform(#selector(forceLoggedOut), with: nil, afterDelay: 0)
+        }else{
+            guard let uid = Auth.auth().currentUser?.uid else{
+                return
+            }
+            Database.database().reference().child("Users").child(uid).observeSingleEvent(of: .value, with: { (snapshot) in
+                if let dictionary = snapshot.value as? [String: Any]{
+                    self.navigationItem.title = dictionary["name"] as? String
+                }
+            }, withCancel: nil)
         }
     }
 
@@ -24,6 +37,11 @@ class ViewController: UIViewController {
         signOutFromFirebaseUser()
         performSegue(withIdentifier: "MainVCToLogin", sender: nil)
     }
+    
+    @IBAction func handleNewMessages(_ sender: UIBarButtonItem) {
+        performSegue(withIdentifier: "MainVCToNewMessageVC", sender: nil)
+    }
+    
     
     @objc func forceLoggedOut(){
         let loginVC = self.storyboard?.instantiateViewController(withIdentifier: "LoginController")
@@ -41,7 +59,14 @@ class ViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "MainVCToLogin"{
-            if let destination = segue.destination as? LoginController{
+            if let _ = segue.destination as? LoginController{
+                //Send data to Login Controller
+            }
+        }
+        
+        if segue.identifier == "MainVCToNewMessageVC"{
+            if let _ = segue.destination as? NewMessagesController{
+                //Send data to New Message Controller
                 
             }
         }

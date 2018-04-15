@@ -11,10 +11,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Messages Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="DemoChatApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MessagesController" id="BYZ-38-t0r" customClass="MessagesController" customModule="DemoChatApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -32,14 +32,60 @@
                                 </connections>
                             </button>
                         </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" image="new_message_icon" id="Plj-11-3Ip">
+                            <connections>
+                                <action selector="handleNewMessages:" destination="BYZ-38-t0r" id="gNP-1C-pIg"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <segue destination="LPF-Lp-KXV" kind="showDetail" identifier="MainVCToLogin" id="IAi-W0-N8k"/>
+                        <segue destination="z76-ww-HiP" kind="show" identifier="MainVCToNewMessageVC" id="2aa-Wx-UU4"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="551.20000000000005" y="97.601199400299862"/>
+        </scene>
+        <!--New Messages Controller-->
+        <scene sceneID="a5V-s3-iS8">
+            <objects>
+                <viewController storyboardIdentifier="NewMessagesController" id="z76-ww-HiP" customClass="NewMessagesController" customModule="DemoChatApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="5RI-aE-aSi">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yRB-yw-dfd">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellId" rowHeight="83" id="O0K-nL-JXN">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="83"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="O0K-nL-JXN" id="uWm-SX-YAZ">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="82.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="yRB-yw-dfd" firstAttribute="trailing" secondItem="pRq-3b-4vr" secondAttribute="trailing" id="SpQ-NP-qYq"/>
+                            <constraint firstItem="yRB-yw-dfd" firstAttribute="top" secondItem="pRq-3b-4vr" secondAttribute="top" id="UGs-SS-ytL"/>
+                            <constraint firstItem="yRB-yw-dfd" firstAttribute="leading" secondItem="pRq-3b-4vr" secondAttribute="leading" id="Uw9-VH-gGw"/>
+                            <constraint firstItem="yRB-yw-dfd" firstAttribute="bottom" secondItem="pRq-3b-4vr" secondAttribute="bottom" id="dQL-8K-8sj"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="pRq-3b-4vr"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="yRB-yw-dfd" id="53F-ec-Rea"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="l91-nj-bHZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="549.60000000000002" y="886.50674662668678"/>
         </scene>
         <!--Login Controller-->
         <scene sceneID="miq-t7-mQW">
@@ -191,5 +237,6 @@
     </scenes>
     <resources>
         <image name="gameofthrones_splash" width="440" height="330"/>
+        <image name="new_message_icon" width="32" height="32"/>
     </resources>
 </document>
