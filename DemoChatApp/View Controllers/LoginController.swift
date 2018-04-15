@@ -19,8 +19,16 @@ class LoginController: UIViewController {
     @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var registerButton: UIButton!
     @IBOutlet weak var inputContainerView: UIView!
+    @IBOutlet weak var loginRegisterSegment: UISegmentedControl!
     
-
+    @IBOutlet weak var inputContainerViewHeightContraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var nameTextFieldHeightContraint: NSLayoutConstraint!
+    
+    @IBOutlet weak var heightOfLineBetweenNameAndEmailContraint: NSLayoutConstraint!
+    @IBOutlet weak var emailTextFieldHeightContraint: NSLayoutConstraint!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpUIContents()
@@ -38,7 +46,15 @@ class LoginController: UIViewController {
         inputContainerView.clipsToBounds = true
     }
     
-    @IBAction func registerButtonAction(_ sender: UIButton) {
+    @IBAction func loginRegisterPressed(_ sender: UIButton) {
+        if loginRegisterSegment.selectedSegmentIndex == 0{
+            handleUserLogin()
+        }else{
+            handleNewUserRegister()
+        }
+    }
+    
+    func handleNewUserRegister(){
         guard let email = emailTextField.text , let password = passwordTextField.text, let name = nameTextField.text else{
             print("Invalid Details")
             return
@@ -55,13 +71,60 @@ class LoginController: UIViewController {
             let ref = Database.database().reference(fromURL: "https://demochatapp-66b1b.firebaseio.com/")
             let userReference = ref.child("Users").child(user)
             let values = ["name": name, "Email-Id": email]
-            userReference.updateChildValues(values)
-            
+            userReference.updateChildValues(values, withCompletionBlock: { (err, ref) in
+                //successfully saved in firebase database
+                if let err = err{
+                    print(err.localizedDescription)
+                    return
+                }
+                self.dismiss(animated: true, completion: nil)
+            })
         }
-        
     }
     
-
+    func handleUserLogin(){
+        guard let email = emailTextField.text , let password = passwordTextField.text else{
+            print("Invalid Details")
+            return
+        }
+        Auth.auth().signIn(withEmail: email, password: password) { (user, error) in
+            
+            if let loginError = error{
+                print("Authentication Error: \(loginError.localizedDescription)")
+                return
+            }
+            //successfully login
+            self.dismiss(animated: true, completion: nil)
+        }
+    }
+    
+    @IBAction func loginRegisterSegmentChanged(_ sender: UISegmentedControl) {
+        //Handle register or login button title
+        let buttonTitle = sender.titleForSegment(at: sender.selectedSegmentIndex)
+        registerButton.setTitle(buttonTitle, for: .normal)
+    
+        //Handle the size of the input container View
+        inputContainerViewHeightContraint.isActive = false
+        inputContainerViewHeightContraint = inputContainerView.heightAnchor.constraint(equalTo: view.heightAnchor, multiplier: (sender.selectedSegmentIndex == 0 ? 0.15 : 0.3))
+        inputContainerViewHeightContraint.isActive = true
+        
+        //Handle the name Text field for each segment
+        nameTextFieldHeightContraint.isActive = false
+        nameTextFieldHeightContraint = nameTextField.heightAnchor.constraint(equalTo: inputContainerView.heightAnchor, multiplier: (sender.selectedSegmentIndex == 0 ? 0 : 1/3))
+        nameTextFieldHeightContraint.isActive = true
+        
+        //Handle the size of email Text Field for each segment
+        emailTextFieldHeightContraint.isActive = false
+        emailTextFieldHeightContraint = emailTextField.heightAnchor.constraint(equalTo: inputContainerView.heightAnchor, multiplier: (sender.selectedSegmentIndex == 0 ? 1/2 : 1/3))
+        emailTextFieldHeightContraint.isActive = true
+        
+        if let lineHeight = heightOfLineBetweenNameAndEmailContraint{
+            lineHeight.isActive = false
+            lineHeight.constant = (sender.selectedSegmentIndex == 0 ? 0 : 1)
+            lineHeight.isActive = true
+        }
+    }
+    
 }
 
 extension UIColor{
