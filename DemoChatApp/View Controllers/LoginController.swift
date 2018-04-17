@@ -70,7 +70,7 @@ class LoginController: UIViewController {
             //Successfully authenticated
             let ref = Database.database().reference(fromURL: "https://demochatapp-66b1b.firebaseio.com/")
             let userReference = ref.child("Users").child(user)
-            let values = ["name": name, "Email-Id": email]
+            let values = ["name": name, "email": email]
             userReference.updateChildValues(values, withCompletionBlock: { (err, ref) in
                 //successfully saved in firebase database
                 if let err = err{
