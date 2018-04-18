@@ -54,34 +54,6 @@ class LoginController: UIViewController {
         }
     }
     
-    func handleNewUserRegister(){
-        guard let email = emailTextField.text , let password = passwordTextField.text, let name = nameTextField.text else{
-            print("Invalid Details")
-            return
-        }
-        Auth.auth().createUser(withEmail: email, password: password) { (user, error) in
-            if let error = error{
-                print("Error : \(error.localizedDescription)")
-                return
-            }
-            guard let user = user?.uid else{
-                return
-            }
-            //Successfully authenticated
-            let ref = Database.database().reference(fromURL: "https://demochatapp-66b1b.firebaseio.com/")
-            let userReference = ref.child("Users").child(user)
-            let values = ["name": name, "email": email]
-            userReference.updateChildValues(values, withCompletionBlock: { (err, ref) in
-                //successfully saved in firebase database
-                if let err = err{
-                    print(err.localizedDescription)
-                    return
-                }
-                self.dismiss(animated: true, completion: nil)
-            })
-        }
-    }
-    
     func handleUserLogin(){
         guard let email = emailTextField.text , let password = passwordTextField.text else{
             print("Invalid Details")

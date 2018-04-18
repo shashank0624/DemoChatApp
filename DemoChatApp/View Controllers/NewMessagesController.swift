@@ -1,13 +1,13 @@
 //
 //  NewMessagesController.swift
 //  DemoChatApp
-//
 //  Created by Kirti Ahlawat on 15/04/18.
 //  Copyright © 2018 Shashank Panwar. All rights reserved.
 //
 
 import UIKit
 import Firebase
+import FirebaseDatabase
 
 class NewMessagesController: UIViewController,UITableViewDataSource, UITableViewDelegate {
 
@@ -32,6 +32,7 @@ class NewMessagesController: UIViewController,UITableViewDataSource, UITableView
             if let dict = snapshot.value as? [String: Any]{
                 let user = User()
                 //if you use this setter, your app will crash if your class properties don't exactly match up with the firebase dictionary keys
+                //user.setValuesForKeys(dict)
                 if let name = dict["name"] as? String{
                     user.name = name
                 }
