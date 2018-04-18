@@ -98,6 +98,7 @@ class LoginController: UIViewController {
         }
     }
     
+    
     @IBAction func loginRegisterSegmentChanged(_ sender: UISegmentedControl) {
         //Handle register or login button title
         let buttonTitle = sender.titleForSegment(at: sender.selectedSegmentIndex)
