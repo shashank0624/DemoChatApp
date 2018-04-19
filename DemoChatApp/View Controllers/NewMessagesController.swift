@@ -58,6 +58,23 @@ class NewMessagesController: UIViewController,UITableViewDataSource, UITableView
             let user = users[indexPath.row]
             cell.textLabel?.text  =  user.name
             cell.detailTextLabel?.text = user.email
+            
+            
+            if let profileImageUrl = user.profileImageUrl{
+                if let url = NSURL(string: profileImageUrl){
+                    URLSession.shared.dataTask(with: url as URL) { (data, URLRequest, error) in
+                        if let err = error{
+                            return
+                        }
+                        DispatchQueue.main.async {
+                            cell.imageView?.image = UIImage(data: data!)
+                        }
+                    }
+                }
+                
+            }
+            
+            
             return cell
         }
        return UITableViewCell()

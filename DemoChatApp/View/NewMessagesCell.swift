@@ -10,5 +10,8 @@ import UIKit
 
 class NewMessagesCell: UITableViewCell {
 
+    @IBOutlet weak var profileImageView: UIImageView!
+    @IBOutlet weak var nameLbl: UILabel!
+    @IBOutlet weak var emailLbl: UILabel!
     
 }
