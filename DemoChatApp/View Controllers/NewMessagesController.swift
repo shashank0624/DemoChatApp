@@ -39,6 +39,10 @@ class NewMessagesController: UIViewController,UITableViewDataSource, UITableView
                 if let email = dict["email"] as? String{
                     user.email = email
                 }
+                if let profileImageUrl = dict["profileImageUrl"] as? String{
+                    user.profileImageUrl = profileImageUrl
+                    
+                }
                 self.users.append(user)
                 
                 //this will crash because of background thread, so lets use
@@ -56,29 +60,19 @@ class NewMessagesController: UIViewController,UITableViewDataSource, UITableView
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as? NewMessagesCell{
             let user = users[indexPath.row]
-            cell.textLabel?.text  =  user.name
-            cell.detailTextLabel?.text = user.email
-            
+            cell.nameLbl.text = user.name
+            cell.emailLbl.text = user.email
             
             if let profileImageUrl = user.profileImageUrl{
-                if let url = NSURL(string: profileImageUrl){
-                    URLSession.shared.dataTask(with: url as URL) { (data, URLRequest, error) in
-                        if let err = error{
-                            return
-                        }
-                        DispatchQueue.main.async {
-                            cell.imageView?.image = UIImage(data: data!)
-                        }
-                    }
-                }
-                
+                cell.profileImageView.loadImageUsingCacheWithUrlString(urlString: profileImageUrl)
             }
-            
-            
             return cell
         }
-       return UITableViewCell()
+        return UITableViewCell()
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return self.view.frame.size.height * 0.1
+    }
 
 }

@@ -28,6 +28,8 @@ class LoginController: UIViewController {
     @IBOutlet weak var heightOfLineBetweenNameAndEmailContraint: NSLayoutConstraint!
     @IBOutlet weak var emailTextFieldHeightContraint: NSLayoutConstraint!
     
+    var messageController : MessagesController?
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,6 +68,8 @@ class LoginController: UIViewController {
                 return
             }
             //successfully login
+            //TODO: NEED TO CHANGE NAVIGATION BAR TITILE
+            self.messageController?.checkIfUserIsLoggedIn()
             self.dismiss(animated: true, completion: nil)
         }
     }

@@ -14,4 +14,10 @@ class NewMessagesCell: UITableViewCell {
     @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var emailLbl: UILabel!
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        profileImageView.layer.cornerRadius = 25
+        profileImageView.layer.masksToBounds = true
+    }
+    
 }

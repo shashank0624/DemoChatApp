@@ -31,11 +31,12 @@ extension LoginController : UIImagePickerControllerDelegate, UINavigationControl
             
             let imageName = NSUUID().uuidString
             if let image = self.profileImageView.image{
-                if let uploadData = UIImagePNGRepresentation(image){
-                    let storageRef = Storage.storage().reference().child("Profile_Images").child("\(imageName).png")
+                
+                if let uploadData = UIImageJPEGRepresentation(image, 0.1){
+                    let storageRef = Storage.storage().reference().child("Profile_Images").child("\(imageName).jpg")
                     storageRef.putData(uploadData, metadata: nil, completion: { (metadata, error) in
                         
-                        if error != nil{
+                        if let error = error{
                             print(error)
                             return
                         }
@@ -59,6 +60,8 @@ extension LoginController : UIImagePickerControllerDelegate, UINavigationControl
                 print(err.localizedDescription)
                 return
             }
+            //TODO: NEED TO CHANGE NAVIGATION BAR TITILE
+            self.messageController?.navigationItem.title = values["name"] as? String
             self.dismiss(animated: true, completion: nil)
         })
     }
