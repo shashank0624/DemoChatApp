@@ -72,7 +72,7 @@ class NewMessagesController: UIViewController,UITableViewDataSource, UITableView
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return self.view.frame.size.height * 0.1
+        return self.view.frame.size.height * 0.2
     }
 
 }

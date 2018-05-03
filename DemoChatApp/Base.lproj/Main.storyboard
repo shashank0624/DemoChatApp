@@ -42,11 +42,84 @@
                     <connections>
                         <segue destination="LPF-Lp-KXV" kind="showDetail" identifier="MainVCToLogin" id="IAi-W0-N8k"/>
                         <segue destination="z76-ww-HiP" kind="show" identifier="MainVCToNewMessageVC" id="2aa-Wx-UU4"/>
+                        <segue destination="A8F-Xk-3nV" kind="show" identifier="messageVCToChatLogVC" id="x0Z-br-2T2"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="551.20000000000005" y="97.601199400299862"/>
+            <point key="canvasLocation" x="679" y="98"/>
+        </scene>
+        <!--Chat Log Controller View Controller-->
+        <scene sceneID="LMg-M4-AFz">
+            <objects>
+                <viewController id="A8F-Xk-3nV" customClass="ChatLogControllerViewController" customModule="DemoChatApp" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="MH0-8a-aFJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xCw-PQ-3dr">
+                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9eH-AK-aiw">
+                                        <rect key="frame" x="295" y="0.0" width="80" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="80" id="KNt-0e-y39"/>
+                                        </constraints>
+                                        <state key="normal" title="Send">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="sendBtnPressed:" destination="A8F-Xk-3nV" eventType="touchUpInside" id="Ka7-Cf-jDK"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter message..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EA1-M5-H8v">
+                                        <rect key="frame" x="0.0" y="0.0" width="295" height="50"/>
+                                        <nil key="textColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="A8F-Xk-3nV" id="JcV-iY-LIQ"/>
+                                        </connections>
+                                    </textField>
+                                </subviews>
+                                <color key="backgroundColor" red="0.97254901959999995" green="0.037411430119999999" blue="0.057792879929999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="9eH-AK-aiw" secondAttribute="trailing" id="AVv-ex-AfF"/>
+                                    <constraint firstItem="EA1-M5-H8v" firstAttribute="top" secondItem="xCw-PQ-3dr" secondAttribute="top" id="Kwq-eg-MHs"/>
+                                    <constraint firstItem="9eH-AK-aiw" firstAttribute="leading" secondItem="EA1-M5-H8v" secondAttribute="trailing" id="Ria-Lh-oea"/>
+                                    <constraint firstItem="9eH-AK-aiw" firstAttribute="top" secondItem="xCw-PQ-3dr" secondAttribute="top" id="bYu-fk-L4P"/>
+                                    <constraint firstItem="EA1-M5-H8v" firstAttribute="leading" secondItem="xCw-PQ-3dr" secondAttribute="leading" id="s7F-3q-Qjz"/>
+                                    <constraint firstAttribute="bottom" secondItem="EA1-M5-H8v" secondAttribute="bottom" id="ucV-Yw-Zm5"/>
+                                    <constraint firstAttribute="bottom" secondItem="9eH-AK-aiw" secondAttribute="bottom" id="v7h-vR-WVZ"/>
+                                    <constraint firstAttribute="height" constant="50" id="ySo-4x-lZu"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E9y-k5-Aye">
+                                <rect key="frame" x="0.0" y="615" width="375" height="2"/>
+                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="2" id="CWK-nD-cB8"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="xCw-PQ-3dr" firstAttribute="top" secondItem="E9y-k5-Aye" secondAttribute="bottom" id="3gg-tJ-iP4"/>
+                            <constraint firstItem="E9y-k5-Aye" firstAttribute="trailing" secondItem="xs1-E3-Fwp" secondAttribute="trailing" id="TSY-sH-4Vi"/>
+                            <constraint firstItem="xCw-PQ-3dr" firstAttribute="trailing" secondItem="xs1-E3-Fwp" secondAttribute="trailing" id="WJW-HW-De0"/>
+                            <constraint firstAttribute="bottom" secondItem="xCw-PQ-3dr" secondAttribute="bottom" id="WYo-wn-sDQ"/>
+                            <constraint firstItem="E9y-k5-Aye" firstAttribute="leading" secondItem="xs1-E3-Fwp" secondAttribute="leading" id="WgB-15-0Nd"/>
+                            <constraint firstItem="xCw-PQ-3dr" firstAttribute="leading" secondItem="xs1-E3-Fwp" secondAttribute="leading" id="mIR-6v-L14"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="xs1-E3-Fwp"/>
+                    </view>
+                    <connections>
+                        <outlet property="inputTextField" destination="EA1-M5-H8v" id="OVS-8F-ra6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="g3J-rQ-cGO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="677.60000000000002" y="866.71664167916049"/>
         </scene>
         <!--New Messages Controller-->
         <scene sceneID="a5V-s3-iS8">
@@ -120,7 +193,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="l91-nj-bHZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="549.60000000000002" y="886.50674662668678"/>
+            <point key="canvasLocation" x="1692" y="98"/>
         </scene>
         <!--Login Controller-->
         <scene sceneID="miq-t7-mQW">
@@ -259,7 +332,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="1336.8" y="97.601199400299862"/>
+            <point key="canvasLocation" x="550" y="-707"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="3gi-D9-HCj">

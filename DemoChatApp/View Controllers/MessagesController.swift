@@ -15,6 +15,8 @@ class MessagesController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationController?.navigationBar.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showChatController)))
+        self.navigationController?.navigationBar.isUserInteractionEnabled = true
         checkIfUserIsLoggedIn()
     }
     
@@ -74,9 +76,14 @@ class MessagesController: UIViewController {
         nameLbl.centerYAnchor.constraint(equalTo: profileImageView.centerYAnchor).isActive = true
         nameLbl.rightAnchor.constraint(equalTo: titleView.rightAnchor).isActive = true
         nameLbl.heightAnchor.constraint(equalTo: profileImageView.heightAnchor).isActive = true
-        
        
         self.navigationItem.titleView = titleView
+        profileImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showChatController)))
+        profileImageView.isUserInteractionEnabled = true
+    }
+    
+    @objc func showChatController(){
+        performSegue(withIdentifier: "messageVCToChatLogVC", sender: nil)
     }
     
     @IBAction func logOutPressed(_ sender: UIButton) {
