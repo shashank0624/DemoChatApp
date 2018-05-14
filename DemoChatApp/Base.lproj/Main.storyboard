@@ -19,7 +19,67 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ajr-OS-y4T">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellId" rowHeight="70" id="PBN-O4-lpE" customClass="NewMessagesCell" customModule="DemoChatApp" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="375" height="70"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PBN-O4-lpE" id="B8g-Vm-EqP">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="69.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gameofthrones_splash" translatesAutoresizingMaskIntoConstraints="NO" id="ViZ-Jw-zKl">
+                                                    <rect key="frame" x="8" y="10" width="50" height="50"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="50" id="eqD-Tw-yPq"/>
+                                                        <constraint firstAttribute="width" secondItem="ViZ-Jw-zKl" secondAttribute="height" multiplier="1:1" id="owy-qX-aFl"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vIp-UJ-Kgu">
+                                                    <rect key="frame" x="73" y="10" width="37" height="17"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="14"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="U6Q-qd-6Dq">
+                                                    <rect key="frame" x="73" y="35" width="30" height="14"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="ViZ-Jw-zKl" firstAttribute="centerY" secondItem="B8g-Vm-EqP" secondAttribute="centerY" id="4mq-Qf-9ov"/>
+                                                <constraint firstItem="vIp-UJ-Kgu" firstAttribute="leading" secondItem="ViZ-Jw-zKl" secondAttribute="trailing" constant="15" id="9dK-Xg-TLm"/>
+                                                <constraint firstItem="U6Q-qd-6Dq" firstAttribute="top" secondItem="vIp-UJ-Kgu" secondAttribute="bottom" constant="8" id="D4d-Yo-2kz"/>
+                                                <constraint firstItem="U6Q-qd-6Dq" firstAttribute="leading" secondItem="vIp-UJ-Kgu" secondAttribute="leading" id="piZ-V3-ygf"/>
+                                                <constraint firstItem="vIp-UJ-Kgu" firstAttribute="top" secondItem="ViZ-Jw-zKl" secondAttribute="top" id="ppF-ua-ORF"/>
+                                                <constraint firstItem="ViZ-Jw-zKl" firstAttribute="leading" secondItem="B8g-Vm-EqP" secondAttribute="leading" constant="8" id="sfe-ok-oyK"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="emailLbl" destination="U6Q-qd-6Dq" id="ogV-dr-AOE"/>
+                                            <outlet property="nameLbl" destination="vIp-UJ-Kgu" id="yU5-Zf-vdn"/>
+                                            <outlet property="profileImageView" destination="ViZ-Jw-zKl" id="NcU-fZ-fo9"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="nQd-p6-BR3"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="46d-PL-PVo"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="ajr-OS-y4T" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="Z3X-ZP-NJ6"/>
+                            <constraint firstItem="ajr-OS-y4T" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="eYj-OK-RTb"/>
+                            <constraint firstItem="ajr-OS-y4T" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="hlu-Zw-UvO"/>
+                            <constraint firstItem="ajr-OS-y4T" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="log-Hv-kSt"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="wSF-ie-Vvd">
@@ -40,6 +100,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="tableView" destination="ajr-OS-y4T" id="eRh-ia-7qs"/>
                         <segue destination="LPF-Lp-KXV" kind="showDetail" identifier="MainVCToLogin" id="IAi-W0-N8k"/>
                         <segue destination="z76-ww-HiP" kind="show" identifier="MainVCToNewMessageVC" id="2aa-Wx-UU4"/>
                         <segue destination="A8F-Xk-3nV" kind="show" identifier="messageVCToChatLogVC" id="x0Z-br-2T2"/>
@@ -47,7 +108,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="679" y="98"/>
+            <point key="canvasLocation" x="516" y="97.601199400299862"/>
         </scene>
         <!--Chat Log Controller View Controller-->
         <scene sceneID="LMg-M4-AFz">

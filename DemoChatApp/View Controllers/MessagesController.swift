@@ -12,12 +12,36 @@ import FirebaseAuth
 import FirebaseDatabase
 
 class MessagesController: UIViewController {
+    @IBOutlet weak var tableView: UITableView!
+    
+    var messages = [Message]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationController?.navigationBar.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showChatController)))
+//        self.navigationController?.navigationBar.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showChatController)))
         self.navigationController?.navigationBar.isUserInteractionEnabled = true
         checkIfUserIsLoggedIn()
+        observeMessages()
+    }
+    
+    func observeMessages(){
+        let ref = Database.database().reference().child("messages")
+        ref.observe(.childAdded, with: { (snapshot) in
+            let message = Message()
+            if let dict = snapshot.value as? [String: Any]{
+                message.text = dict["text"] as? String
+                message.fromId = dict["fromId"] as? String
+                message.toId = dict["toId"] as? String
+                message.timeStamp = dict["timestamp"] as? Int
+                self.messages.append(message)
+                
+            }
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+            print(snapshot)
+        }, withCancel: nil)
+        
     }
     
     func checkIfUserIsLoggedIn(){
@@ -78,12 +102,12 @@ class MessagesController: UIViewController {
         nameLbl.heightAnchor.constraint(equalTo: profileImageView.heightAnchor).isActive = true
        
         self.navigationItem.titleView = titleView
-        profileImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showChatController)))
+//        profileImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showChatController)))
         profileImageView.isUserInteractionEnabled = true
     }
     
-    @objc func showChatController(){
-        performSegue(withIdentifier: "messageVCToChatLogVC", sender: nil)
+    @objc func showChatController(user: User){
+        performSegue(withIdentifier: "messageVCToChatLogVC", sender: user)
     }
     
     @IBAction func logOutPressed(_ sender: UIButton) {
@@ -92,6 +116,7 @@ class MessagesController: UIViewController {
     }
     
     @IBAction func handleNewMessages(_ sender: UIBarButtonItem) {
+        
         performSegue(withIdentifier: "MainVCToNewMessageVC", sender: nil)
     }
     
@@ -122,11 +147,42 @@ class MessagesController: UIViewController {
         }
         
         if segue.identifier == "MainVCToNewMessageVC"{
-            if let _ = segue.destination as? NewMessagesController{
+            if let destination = segue.destination as? NewMessagesController{
                 //Send data to New Message Controller
+                destination.messagesController = self
                 
+            }
+        }
+        
+        if segue.identifier == "messageVCToChatLogVC"{
+            if let destination = segue.destination as? ChatLogControllerViewController{
+                if let user = sender as? User{
+                    destination.user = user
+                }
             }
         }
     }
 }
 
+extension MessagesController : UITableViewDataSource, UITableViewDelegate{
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print(messages)
+        return messages.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        if let cell = tableView.dequeueReusableCell(withIdentifier: "cellId", for: indexPath) as? NewMessagesCell{
+            let message = messages[indexPath.row]
+            cell.message = message
+            return cell
+        }else{
+            return UITableViewCell()
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return self.view.frame.size.height * 0.1
+    }
+}

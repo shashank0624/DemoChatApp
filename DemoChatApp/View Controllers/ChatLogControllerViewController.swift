@@ -8,15 +8,20 @@
 
 import UIKit
 import FirebaseDatabase
+import FirebaseAuth
 
 class ChatLogControllerViewController: UIViewController {
     
+    var user : User?{
+        didSet{
+            navigationItem.title = user?.name
+        }
+    }
     @IBOutlet weak var inputTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        navigationItem.title = "Chat Log Controller"
     }
     
     @IBAction func sendBtnPressed(_ sender: UIButton) {
@@ -26,7 +31,10 @@ class ChatLogControllerViewController: UIViewController {
     func handleSendMessage(){
         let ref = Database.database().reference().child("messages")
         let childRef = ref.childByAutoId()
-        let values = ["text": inputTextField.text!]
+        let toId = user!.userId!
+        let fromId = Auth.auth().currentUser!.uid
+        let timestamp = Int(Date().timeIntervalSince1970)
+        let values = ["text": inputTextField.text!, "toId": toId, "fromId": fromId, "timestamp": timestamp] as [String : Any]
         childRef.updateChildValues(values)
     }
 }
