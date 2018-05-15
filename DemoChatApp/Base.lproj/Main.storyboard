@@ -50,11 +50,19 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kRH-CC-f44">
+                                                    <rect key="frame" x="365" y="10" width="0.0" height="0.0"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="ViZ-Jw-zKl" firstAttribute="centerY" secondItem="B8g-Vm-EqP" secondAttribute="centerY" id="4mq-Qf-9ov"/>
+                                                <constraint firstAttribute="trailing" secondItem="kRH-CC-f44" secondAttribute="trailing" constant="10" id="9dI-fl-lW1"/>
                                                 <constraint firstItem="vIp-UJ-Kgu" firstAttribute="leading" secondItem="ViZ-Jw-zKl" secondAttribute="trailing" constant="15" id="9dK-Xg-TLm"/>
                                                 <constraint firstItem="U6Q-qd-6Dq" firstAttribute="top" secondItem="vIp-UJ-Kgu" secondAttribute="bottom" constant="8" id="D4d-Yo-2kz"/>
+                                                <constraint firstItem="kRH-CC-f44" firstAttribute="top" secondItem="B8g-Vm-EqP" secondAttribute="top" constant="10" id="LEP-q1-A6Y"/>
                                                 <constraint firstItem="U6Q-qd-6Dq" firstAttribute="leading" secondItem="vIp-UJ-Kgu" secondAttribute="leading" id="piZ-V3-ygf"/>
                                                 <constraint firstItem="vIp-UJ-Kgu" firstAttribute="top" secondItem="ViZ-Jw-zKl" secondAttribute="top" id="ppF-ua-ORF"/>
                                                 <constraint firstItem="ViZ-Jw-zKl" firstAttribute="leading" secondItem="B8g-Vm-EqP" secondAttribute="leading" constant="8" id="sfe-ok-oyK"/>
@@ -64,6 +72,7 @@
                                             <outlet property="emailLbl" destination="U6Q-qd-6Dq" id="ogV-dr-AOE"/>
                                             <outlet property="nameLbl" destination="vIp-UJ-Kgu" id="yU5-Zf-vdn"/>
                                             <outlet property="profileImageView" destination="ViZ-Jw-zKl" id="NcU-fZ-fo9"/>
+                                            <outlet property="timeLbl" destination="kRH-CC-f44" id="xQS-Ui-4ho"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

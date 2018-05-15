@@ -15,6 +15,7 @@ class MessagesController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     var messages = [Message]()
+    var messageDictionary = [String: Message]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,7 +34,15 @@ class MessagesController: UIViewController {
                 message.fromId = dict["fromId"] as? String
                 message.toId = dict["toId"] as? String
                 message.timeStamp = dict["timestamp"] as? Int
-                self.messages.append(message)
+                //self.messages.append(message)
+                if let toId = message.toId{
+                    self.messageDictionary[toId] = message
+                    self.messages = Array(self.messageDictionary.values)
+                    
+                    self.messages = self.messages.sorted(by: { (message1, message2) -> Bool in
+                        return message1.timeStamp! > message2.timeStamp!
+                    })
+                }
                 
             }
             DispatchQueue.main.async {

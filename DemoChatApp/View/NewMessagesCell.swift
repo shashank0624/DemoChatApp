@@ -18,11 +18,15 @@ class NewMessagesCell: UITableViewCell {
                 ref.observeSingleEvent(of: .value, with: { (snapshot) in
                     if let dict = snapshot.value as? [String: Any]{
                         self.nameLbl.text = dict["name"] as? String
-                        self.emailLbl.text = self.message?.text
+                        self.emailLbl.text = self.message?.text // User's message
                         self.profileImageView.loadImageUsingCacheWithUrlString(urlString: dict["profileImageUrl"] as! String)
+                        let timestamp = Date(timeIntervalSince1970: Double((self.message?.timeStamp)!))
+                        let dateFormatter = DateFormatter()
+                        dateFormatter.dateFormat = "hh:mm:ss a"
+                        self.timeLbl.text = dateFormatter.string(from: timestamp)
+                        
                     }
                 }, withCancel: nil)
-                
             }
         }
     }
@@ -30,6 +34,8 @@ class NewMessagesCell: UITableViewCell {
     @IBOutlet weak var profileImageView: UIImageView!
     @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var emailLbl: UILabel!
+    @IBOutlet weak var timeLbl: UILabel!
+    
     
     override func awakeFromNib() {
         super.awakeFromNib()
