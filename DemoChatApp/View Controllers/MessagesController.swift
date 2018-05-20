@@ -22,7 +22,50 @@ class MessagesController: UIViewController {
 //        self.navigationController?.navigationBar.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showChatController)))
         self.navigationController?.navigationBar.isUserInteractionEnabled = true
         checkIfUserIsLoggedIn()
-        observeMessages()
+//        observeMessages()
+        observeUserMessages()
+    }
+    
+    func observeUserMessages(){
+        guard let uid = Auth.auth().currentUser?.uid else{
+            return
+        }
+        let ref = Database.database().reference().child("user-messages").child(uid)
+        ref.observe(.childAdded, with: { (snapshot) in
+            let messageId = snapshot.key
+            let messageRef = Database.database().reference().child("messages").child(messageId)
+            messageRef.observeSingleEvent(of: .value, with: { (snapshot) in
+                print(snapshot)
+                let message = Message()
+                if let dict = snapshot.value as? [String: Any]{
+                    message.text = dict["text"] as? String
+                    message.fromId = dict["fromId"] as? String
+                    message.toId = dict["toId"] as? String
+                    message.timeStamp = dict["timestamp"] as? Int
+                    //self.messages.append(message)
+                    if let chatPartnerId = message.chatPartnerId(){
+                        self.messageDictionary[chatPartnerId] = message
+                        self.messages = Array(self.messageDictionary.values)
+                        
+                        self.messages = self.messages.sorted(by: { (message1, message2) -> Bool in
+                            return message1.timeStamp! > message2.timeStamp!
+                        })
+                    }
+                }
+                self.timer?.invalidate()
+                self.timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(self.handleReloadTable), userInfo: nil, repeats: false)
+                
+            }, withCancel: nil)
+        }, withCancel: nil)
+    }
+    
+    var timer : Timer?
+    
+    @objc func handleReloadTable(){
+        DispatchQueue.main.async {
+            print("Reload Messages")
+            self.tableView.reloadData()
+        }
     }
     
     func observeMessages(){
@@ -43,7 +86,6 @@ class MessagesController: UIViewController {
                         return message1.timeStamp! > message2.timeStamp!
                     })
                 }
-                
             }
             DispatchQueue.main.async {
                 self.tableView.reloadData()
@@ -74,6 +116,12 @@ class MessagesController: UIViewController {
     }
     
     func setupNavigationBarWithUser(user : User){
+        messages.removeAll()
+        messageDictionary.removeAll()
+        tableView.reloadData()
+        observeUserMessages()
+        
+        
        // self.navigationItem.title = user.name
         let titleView = UIView()
         titleView.frame = CGRect(x: 0, y: 0, width: 100, height: 40)
@@ -193,5 +241,26 @@ extension MessagesController : UITableViewDataSource, UITableViewDelegate{
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return self.view.frame.size.height * 0.1
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let message = messages[indexPath.row]
+        guard let chatPartnerId = message.chatPartnerId() else{
+            return
+        }
+        let ref = Database.database().reference().child("Users").child(chatPartnerId)
+        ref.observeSingleEvent(of: .value, with: { (snapshot) in
+            print(snapshot)
+            guard let dict = snapshot.value as? [String : Any] else{
+                return
+            }
+            let user = User()
+            user.email = dict["email"] as? String
+            user.name = dict["name"] as? String
+            user.profileImageUrl = dict["profileImageUrl"] as? String
+            user.userId = chatPartnerId
+            
+            self.performSegue(withIdentifier: "messageVCToChatLogVC", sender: user)
+        }, withCancel: nil)
     }
 }
