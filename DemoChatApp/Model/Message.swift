@@ -13,10 +13,23 @@ class Message : NSObject{
     var fromId : String?
     var text : String?
     var timeStamp : Int?
-    var toId : String?  
-    
+    var toId : String?
+    var imageUrl : String?
+    var imageHeight : NSNumber?
+    var imageWidth: NSNumber?
     
     func chatPartnerId() -> String?{
         return fromId == Auth.auth().currentUser?.uid ? toId : fromId
+    }
+    
+    init(dict: [String:Any]){
+        super.init()
+        fromId = dict["fromId"] as? String
+        text = dict["text"] as? String
+        toId = dict["toId"] as? String
+        imageUrl = dict["imageUrl"] as? String
+        timeStamp = dict["timestamp"] as? Int
+        imageHeight = dict["imageHeight"] as? NSNumber
+        imageWidth = dict["imageWidth"] as? NSNumber
     }
 }

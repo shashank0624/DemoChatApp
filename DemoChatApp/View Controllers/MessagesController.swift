@@ -35,14 +35,8 @@ class MessagesController: UIViewController {
             let messageId = snapshot.key
             let messageRef = Database.database().reference().child("messages").child(messageId)
             messageRef.observeSingleEvent(of: .value, with: { (snapshot) in
-                print(snapshot)
-                let message = Message()
                 if let dict = snapshot.value as? [String: Any]{
-                    message.text = dict["text"] as? String
-                    message.fromId = dict["fromId"] as? String
-                    message.toId = dict["toId"] as? String
-                    message.timeStamp = dict["timestamp"] as? Int
-                    //self.messages.append(message)
+                    let message = Message(dict: dict)
                     if let chatPartnerId = message.chatPartnerId(){
                         self.messageDictionary[chatPartnerId] = message
                         self.messages = Array(self.messageDictionary.values)
@@ -71,13 +65,8 @@ class MessagesController: UIViewController {
     func observeMessages(){
         let ref = Database.database().reference().child("messages")
         ref.observe(.childAdded, with: { (snapshot) in
-            let message = Message()
             if let dict = snapshot.value as? [String: Any]{
-                message.text = dict["text"] as? String
-                message.fromId = dict["fromId"] as? String
-                message.toId = dict["toId"] as? String
-                message.timeStamp = dict["timestamp"] as? Int
-                //self.messages.append(message)
+                let message = Message(dict: dict)
                 if let toId = message.toId{
                     self.messageDictionary[toId] = message
                     self.messages = Array(self.messageDictionary.values)

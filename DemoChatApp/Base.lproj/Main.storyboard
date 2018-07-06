@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UOO-GQ-ZUK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UOO-GQ-ZUK">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -127,52 +127,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="E9y-k5-Aye">
-                                <rect key="frame" x="0.0" y="615" width="375" height="2"/>
-                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="2" id="CWK-nD-cB8"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xCw-PQ-3dr">
-                                <rect key="frame" x="0.0" y="617" width="375" height="50"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9eH-AK-aiw">
-                                        <rect key="frame" x="295" y="0.0" width="80" height="50"/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" constant="80" id="KNt-0e-y39"/>
-                                        </constraints>
-                                        <state key="normal" title="Send">
-                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="sendBtnPressed:" destination="A8F-Xk-3nV" eventType="touchUpInside" id="Ka7-Cf-jDK"/>
-                                        </connections>
-                                    </button>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter message..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="EA1-M5-H8v">
-                                        <rect key="frame" x="0.0" y="0.0" width="295" height="50"/>
-                                        <nil key="textColor"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no"/>
-                                        <connections>
-                                            <outlet property="delegate" destination="A8F-Xk-3nV" id="JcV-iY-LIQ"/>
-                                        </connections>
-                                    </textField>
-                                </subviews>
-                                <color key="backgroundColor" red="0.97254901959999995" green="0.037411430119999999" blue="0.057792879929999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="9eH-AK-aiw" secondAttribute="trailing" id="AVv-ex-AfF"/>
-                                    <constraint firstItem="EA1-M5-H8v" firstAttribute="top" secondItem="xCw-PQ-3dr" secondAttribute="top" id="Kwq-eg-MHs"/>
-                                    <constraint firstItem="9eH-AK-aiw" firstAttribute="leading" secondItem="EA1-M5-H8v" secondAttribute="trailing" id="Ria-Lh-oea"/>
-                                    <constraint firstItem="9eH-AK-aiw" firstAttribute="top" secondItem="xCw-PQ-3dr" secondAttribute="top" id="bYu-fk-L4P"/>
-                                    <constraint firstItem="EA1-M5-H8v" firstAttribute="leading" secondItem="xCw-PQ-3dr" secondAttribute="leading" id="s7F-3q-Qjz"/>
-                                    <constraint firstAttribute="bottom" secondItem="EA1-M5-H8v" secondAttribute="bottom" id="ucV-Yw-Zm5"/>
-                                    <constraint firstAttribute="bottom" secondItem="9eH-AK-aiw" secondAttribute="bottom" id="v7h-vR-WVZ"/>
-                                    <constraint firstAttribute="height" constant="50" id="ySo-4x-lZu"/>
-                                </constraints>
-                            </view>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="Gyo-fo-Y4h">
-                                <rect key="frame" x="0.0" y="64" width="375" height="551"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="xe6-YZ-GGt">
                                     <size key="itemSize" width="375" height="88"/>
@@ -200,22 +156,18 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="xCw-PQ-3dr" firstAttribute="top" secondItem="E9y-k5-Aye" secondAttribute="bottom" id="3gg-tJ-iP4"/>
                             <constraint firstItem="Gyo-fo-Y4h" firstAttribute="leading" secondItem="xs1-E3-Fwp" secondAttribute="leading" id="Ea1-pi-hPB"/>
                             <constraint firstItem="Gyo-fo-Y4h" firstAttribute="top" secondItem="xs1-E3-Fwp" secondAttribute="top" id="Ecr-xZ-96K"/>
-                            <constraint firstItem="E9y-k5-Aye" firstAttribute="top" secondItem="Gyo-fo-Y4h" secondAttribute="bottom" id="HjI-hv-GNX"/>
-                            <constraint firstItem="E9y-k5-Aye" firstAttribute="trailing" secondItem="xs1-E3-Fwp" secondAttribute="trailing" id="TSY-sH-4Vi"/>
-                            <constraint firstItem="xCw-PQ-3dr" firstAttribute="trailing" secondItem="xs1-E3-Fwp" secondAttribute="trailing" id="WJW-HW-De0"/>
-                            <constraint firstAttribute="bottom" secondItem="xCw-PQ-3dr" secondAttribute="bottom" id="WYo-wn-sDQ"/>
-                            <constraint firstItem="E9y-k5-Aye" firstAttribute="leading" secondItem="xs1-E3-Fwp" secondAttribute="leading" id="WgB-15-0Nd"/>
-                            <constraint firstItem="xCw-PQ-3dr" firstAttribute="leading" secondItem="xs1-E3-Fwp" secondAttribute="leading" id="mIR-6v-L14"/>
+                            <constraint firstItem="Gyo-fo-Y4h" firstAttribute="trailing" secondItem="xs1-E3-Fwp" secondAttribute="trailing" id="G6l-ai-9s9"/>
+                            <constraint firstItem="Gyo-fo-Y4h" firstAttribute="top" secondItem="xs1-E3-Fwp" secondAttribute="top" id="Qqo-ni-z6P"/>
+                            <constraint firstItem="xs1-E3-Fwp" firstAttribute="bottom" secondItem="Gyo-fo-Y4h" secondAttribute="bottom" id="dxp-x9-c89"/>
+                            <constraint firstItem="Gyo-fo-Y4h" firstAttribute="leading" secondItem="xs1-E3-Fwp" secondAttribute="leading" id="fAw-B1-ai4"/>
                             <constraint firstItem="Gyo-fo-Y4h" firstAttribute="trailing" secondItem="xs1-E3-Fwp" secondAttribute="trailing" id="rAm-NA-voD"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="xs1-E3-Fwp"/>
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="Gyo-fo-Y4h" id="6kz-Kp-8Se"/>
-                        <outlet property="inputTextField" destination="EA1-M5-H8v" id="OVS-8F-ra6"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="g3J-rQ-cGO" userLabel="First Responder" sceneMemberID="firstResponder"/>
