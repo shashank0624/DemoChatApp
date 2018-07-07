@@ -52,6 +52,9 @@ class ChatLogControllerViewController: UIViewController, UIImagePickerController
                     self.messages.append(Message(dict: dict))
                     DispatchQueue.main.async {
                         self.collectionView.reloadData()
+                        //scroll to the last index
+                        let indexpath = NSIndexPath(item: self.messages.count - 1, section: 0)
+                        self.collectionView.scrollToItem(at: indexpath as IndexPath, at: .bottom, animated: true)
                     }
             }, withCancel: nil)
         }, withCancel: nil)
@@ -63,7 +66,7 @@ class ChatLogControllerViewController: UIViewController, UIImagePickerController
         collectionView.contentInset = UIEdgeInsets(top: 8, left: 0, bottom: 68, right: 0 )
 //        collectionView.scrollIndicatorInsets = UIEdgeInsets(top: 0, left: 0, bottom: 8, right: 0 )
         collectionView.keyboardDismissMode = .interactive
-//        setUpKeyBoardObserver()
+       setUpKeyBoardObserver()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -166,31 +169,17 @@ class ChatLogControllerViewController: UIViewController, UIImagePickerController
         }
     }
     
-    func sendMessageWithImageUrl(imageUrl : String, image: UIImage){
-        let ref = Database.database().reference().child("messages")
-        let childRef = ref.childByAutoId()
-        let toId = user!.userId!
-        let fromId = Auth.auth().currentUser!.uid
-        let timestamp = Int(Date().timeIntervalSince1970)
-        let values = ["toId": toId, "fromId": fromId, "timestamp": timestamp, "imageUrl": imageUrl, "imageWidth": image.size.width, "imageHeight": image.size.height] as [String : Any]
-        childRef.updateChildValues(values) { (error, ref) in
-            if let err = error{
-                print(err)
-                return
-            }
-            self.inputTextField.text = nil
-            let userMessagesRef = Database.database().reference().child("user-messages").child(fromId)
-            let messageId = childRef.key
-            userMessagesRef.updateChildValues([messageId: 1])
-            
-            let receipientUserMessagesRef = Database.database().reference().child("user-messages").child(toId)
-            receipientUserMessagesRef.updateChildValues([messageId: 1])
-        }
+    func setUpKeyBoardObserver(){
+        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardDidShow), name: Notification.Name.UIKeyboardDidShow, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardWillShow), name: Notification.Name.UIKeyboardWillShow, object: nil)
+//        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
     }
     
-    func setUpKeyBoardObserver(){
-        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardWillShow), name: Notification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(handleKeyboardWillHide), name: Notification.Name.UIKeyboardWillHide, object: nil)
+    @objc func handleKeyboardDidShow(notification: Notification){
+        if messages.count > 0{
+            let indexpath = NSIndexPath(item: messages.count - 1, section: 0)
+            collectionView.scrollToItem(at: indexpath as IndexPath, at: .top, animated: true)
+        }
     }
     
     @objc func handleKeyboardWillShow(notification: Notification){
@@ -225,12 +214,26 @@ class ChatLogControllerViewController: UIViewController, UIImagePickerController
     }
     
     @objc func handleSendMessage(){
+        let properties: [String: Any] = ["text": inputTextField.text!]
+        sendMessageWithProperties(properties: properties)
+    }
+    
+    func sendMessageWithImageUrl(imageUrl : String, image: UIImage){
+        let properties : [String: Any] = ["imageUrl": imageUrl, "imageWidth": image.size.width, "imageHeight": image.size.height]
+        sendMessageWithProperties(properties: properties)
+    }
+    
+    private func sendMessageWithProperties(properties : [String: Any]){
         let ref = Database.database().reference().child("messages")
         let childRef = ref.childByAutoId()
         let toId = user!.userId!
         let fromId = Auth.auth().currentUser!.uid
         let timestamp = Int(Date().timeIntervalSince1970)
-        let values = ["text": inputTextField.text!, "toId": toId, "fromId": fromId, "timestamp": timestamp] as [String : Any]
+        var values = ["toId": toId, "fromId": fromId, "timestamp": timestamp] as [String : Any]
+        
+        //Append property dictionary somehow/////????
+        properties.forEach({values[$0.key] = $0.value})
+        
         childRef.updateChildValues(values) { (error, ref) in
             if let err = error{
                 print(err)
