@@ -248,6 +248,64 @@ class ChatLogControllerViewController: UIViewController, UIImagePickerController
             receipientUserMessagesRef.updateChildValues([messageId: 1])
         }
     }
+    
+    var startingFrame : CGRect?
+    var blackBackgroundView : UIView?
+    var startingImageView : UIImageView?
+    
+    func performingZoomInForStartingImageView(startingImageView: UIImageView){
+        self.startingImageView =  startingImageView
+        self.startingImageView?.isHidden = true
+        startingFrame = startingImageView.superview?.convert(startingImageView.frame, to: nil)
+        print(startingFrame)
+        let zoomingImageView = UIImageView(frame: startingFrame!)
+        zoomingImageView.backgroundColor = UIColor.red
+        zoomingImageView.image = startingImageView.image
+        zoomingImageView.isUserInteractionEnabled = true
+        zoomingImageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleZoomOut)))
+        
+        if let keyWindow = UIApplication.shared.keyWindow{
+            blackBackgroundView = UIView(frame: keyWindow.frame)
+            blackBackgroundView?.backgroundColor = UIColor.black
+            blackBackgroundView?.alpha = 0
+            
+            keyWindow.addSubview(blackBackgroundView!)
+            keyWindow.addSubview(zoomingImageView)
+            
+            
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+                self.blackBackgroundView?.alpha = 1.0
+                self.inputContainerView.alpha = 0
+                //Height
+                //h1 / w2 = h1/w1
+                
+                let height = (self.startingFrame?.height)! / (self.startingFrame?.width)! * keyWindow.frame.width
+                zoomingImageView.frame = CGRect(x: 0, y: 0, width: keyWindow.frame.width, height: (height))
+                zoomingImageView.center = keyWindow.center
+                
+            }) { (completed) in
+                
+            }
+        }
+    }
+    
+    @objc func handleZoomOut(tapGesture: UITapGestureRecognizer){
+        print("Handle Zoom out....")
+        if let zoomOutImageView = tapGesture.view {
+            zoomOutImageView.layer.cornerRadius = 16
+            zoomOutImageView.clipsToBounds = true
+            
+            UIView.animate(withDuration: 0.5, delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 1, options: .curveEaseOut, animations: {
+                zoomOutImageView.frame = self.startingFrame!
+                self.blackBackgroundView?.alpha = 0
+                
+            }) { (completed) in
+                zoomOutImageView.removeFromSuperview()
+                self.startingImageView?.isHidden = false
+            }
+       
+        }
+    }
 }
 
 extension ChatLogControllerViewController : UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout{
@@ -258,14 +316,17 @@ extension ChatLogControllerViewController : UICollectionViewDelegate, UICollecti
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath) as! ChatMessageCell
+        cell.chatLogController = self
         let message = messages[indexPath.row]
         cell.textView.text = message.text
         
         setUpCell(cell: cell, message: message)
         if let text = message.text{
+            cell.textView.isHidden = false
             cell.bubbleWidthAnchor?.constant = estimateFrameForText(text: text).width + 32
         }else if message.imageUrl != nil{
             cell.bubbleWidthAnchor?.constant = 200
+            cell.textView.isHidden = true
             
         }
         
@@ -287,7 +348,7 @@ extension ChatLogControllerViewController : UICollectionViewDelegate, UICollecti
         
         if message.fromId == Auth.auth().currentUser?.uid{
             // Outgoing blue
-            cell.bubbleView.backgroundColor = ChatMessageCell.blueColor
+            //cell.bubbleView.backgroundColor = ChatMessageCell.blueColor
             cell.textView.textColor = UIColor.white
             cell.profileImageView.isHidden = true
             cell.bubbleViewRightAnchor?.isActive = true

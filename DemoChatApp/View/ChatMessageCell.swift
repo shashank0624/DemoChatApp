@@ -10,6 +10,8 @@ import UIKit
 
 class ChatMessageCell: UICollectionViewCell {
     
+    var chatLogController : ChatLogControllerViewController?
+    
     let textView : UITextView = {
        let tv = UITextView()
         tv.text = "Sample Text For Now"
@@ -18,7 +20,6 @@ class ChatMessageCell: UICollectionViewCell {
         tv.backgroundColor = UIColor.clear
         tv.isUserInteractionEnabled = false
         tv.textColor = UIColor.white
-        //tv.isEditable = false
         return tv
     }()
     
@@ -48,15 +49,24 @@ class ChatMessageCell: UICollectionViewCell {
         return imageView
     }()
     
-    let messageImageView : UIImageView = {
+    lazy var messageImageView : UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.layer.cornerRadius = 16
         imageView.layer.masksToBounds = true
         imageView.contentMode = .scaleAspectFill
         imageView.backgroundColor = UIColor.brown
+        imageView.isUserInteractionEnabled = true
+        imageView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleZoomTap)))
         return imageView
     }()
+    
+    @objc func handleZoomTap(tapGesture : UITapGestureRecognizer){
+        if let imageView = tapGesture.view as? UIImageView{
+            self.chatLogController?.performingZoomInForStartingImageView(startingImageView: imageView)
+        }
+        
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
